@@ -1,4 +1,3 @@
-{% load staticfiles %}
 
 {% block head_block %}
 
@@ -10,7 +9,7 @@
 
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" href="{% static "favicon.ico" %}">
+<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
 <title>ML Expression</title>
 
@@ -23,6 +22,6 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 <!-- custom CSS -->
-<link rel="stylesheet" href="{% static "custom.css" %}">
+<link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
 
 {% endblock %}

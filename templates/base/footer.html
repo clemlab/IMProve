@@ -1,8 +1,7 @@
-{% load staticfiles %}
 
 {% block footer_block %}
 
-<link rel="stylesheet" href="{% static "sticky-footer.css" %}">
+<link rel="stylesheet" href="{{ url_for('static', filename='sticky-footer.css') }}">
 
 <!-- Fixed footer bar -->
 <footer class="footer">
@@ -34,7 +33,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 
 <!-- custom javascript code -->
-<script src="{% static "misc_utils.js" %}"></script>
+<script src="{{ url_for('static', filename='misc_utils.js') }}"></script>
 
 <!-- datatables -->
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" crossorigin="anonymous">
