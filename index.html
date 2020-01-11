@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; -->
+<!-- any other head content must come *after* these tags -->
+
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="/static/favicon.ico">
+
+<title>ML Expression</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<!-- custom CSS -->
+<link rel="stylesheet" href="/static/custom.css">
+
+    </head>
+
+    <body>
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='navbar.css') }}">
+
+<!-- Fixed navivation bar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://www.caltech.edu" target="_blank"><img height="20" src="//www.caltech.edu/sites/all/modules/custom/caltech_banner/img/caltech-new-logo.png"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#submit">Predict Expression</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#team" onclick="randomize_order()">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+
+  <!-- Github corner from http://tholman.com/github-corners -->
+  <div style="z-index: 9999">
+  <a href="https://github.com/clemlab/impweb" class="github-corner" aria-label="Help us improve on Github">
+    <svg width="80" height="80" viewBox="0 0 250 250" style="color:#fff; position: absolute; top: 0; border: 0; right: 0;z-index: 9999;" aria-hidden="true">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+    </svg>
+  </a>
+
+
+      <div class="container theme-showcase" role="main">
+        <div class="row">
+          <div class="col">
+
+
+
+<h1>IMProve: A Data-Driven Approach to Predicting Integral Membrane Protein Expression</h1>
+
+
+<div class="jumbotron">
+  <div class="row custom-white-panel">
+    <div class="col-centered">
+
+<p align="justify">
+​​Integral membrane proteins (IMPs) are of both fundamental scientific and medical importance, because they govern the flow of nutrients and information across cell membranes and because they comprise the largest class of therapeutic drug targets. However, the structural and biophysical characterization of IMPs lags far behind that of other protein classes, due to the inability to reliably produce significant quantities of IMPs for experimental studies. We are developing methods to predict and improve IMP expression to address this problem by removing fundamental gaps in knowledge and technology via a combination of computational and experimental methods.
+</p>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Submission -->
+<div class="row" id="submit">
+  <div class="col col-md-12 extraClass">
+
+
+<!-- Submission tabs for different forms -->
+<nav>
+  <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-predict-tab" data-toggle="tab" href="#predict" role="tab" aria-controls="nav-predict" aria-selected="true">Submit Job</a>
+    <a class="nav-item nav-link" id="nav-result-tab" data-toggle="tab" href="#result" role="tab" aria-controls="nav-result" aria-selected="true">View Result</a>
+    <a class="nav-item nav-link" id="nav-families-tab" data-toggle="tab" href="#families" role="tab" aria-controls="nav-families" aria-selected="false">Browse Families</a>
+    <a class="nav-item nav-link" id="nav-recent-tab" data-toggle="tab" href="#recent" role="tab" aria-controls="nav-recent" aria-selected="false">Recent Results</a>
+    <a class="nav-item nav-link" id="nav-user-tab" data-toggle="tab" href="#user" role="tab" aria-controls="nav-user" aria-selected="false">My Profile</a>
+  </div>
+</nav>
+
+
+<!-- Only one tab is shown at a time -->
+<div class="tab-content" id="nav-tabContent">
+
+<!-- Predict sequences form -->
+<div class="tab-pane fade show active" id="nav-predict" role="tabpanel" aria-labelledby="nav-predict-tab">
+
+
+<form action="/webform/basic" method="post" enctype="multipart/form-data">
+    <fieldset>
+      <legend>Submission Form</legend>
+      <div id="div_email" class="form-group">
+        <label for="email" class="control-label requiredField">Your email (if not an academic domain, your job will be held for approval):
+          <span class="asteriskField">*</span>
+        </label>
+        <div class="controls ">
+          <input type="email" name="email" maxlength="100" class="emailinput form-control" required="" id="email" placeholder="Please enter an email address"></div>
+      </div>
+      <div id="div_job_name" class="form-group">
+        <label for="job_name" class="control-label  requiredField">
+          Job Name
+          <span class="asteriskField">*</span>
+        </label>
+        <div class="controls ">
+          <input type="text" name="job_name" maxlength="50" class="textinput textInput form-control" required="" id="job_name"> </div>
+      </div>
+      <div id="div_sequence" class="form-group">
+        <label for="sequence" class="control-label">
+          Sequence (If protein, we will find naturally-occuring gene sequences) [FASTA-formatted, if multiple]
+        </label>
+        <div class="controls ">
+          <textarea name="sequence" cols="40" rows="10" class="textarea form-control" id="id_sequence"></textarea> </div>
+      </div>
+      <div id="div_id_sequence_file" class="form-group">
+        <label for="id_sequence_file" class="control-label ">
+          FASTA-formatted sequence file
+        </label>
+        <div class="controls ">
+          <input type="file" class="clearablefileinput" id="sequencefile" name="sequencefile"> </div>
+      </div>
+      <div id="div_method" class="form-group">
+        <label for="method" class="control-label  requiredField">
+          Method
+          <span class="asteriskField">*</span>
+        </label>
+        <div class="controls ">
+          <select class="select form-control" id="method" name="method">
+            <option value="improve_2018">IMProve (Saladi et al., JBC, 2018)</option>    
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div id="div_keeppublic" class="checkbox">
+          <label for="keeppublic" class="">
+            <input type="checkbox" name="keeppublic" class="checkboxinput" id="keeppublic" checked> Display publically? (Public jobs complete more quickly!)
+          </label>
+        </div>
+      </div>
+    </fieldset>
+    
+    <div class="form-group">
+      <div class="controls ">
+        <div class="buttonHolder">
+          <input type="submit" name="submit" value="Submit" class="btn btn-primary button white" id="submit-id-submit">
+    
+        </div>
+      </div>
+    </div>
+</form>
+
+
+
+</div>
+<!-- End predict form -->
+
+
+<!-- View result -->
+<div class="tab-pane fade show active" id="nav-result" role="tabpanel" aria-labelledby="nav-result-tab">
+
+
+
+</div>
+<!-- End view result -->
+
+
+<!-- Browse families -->
+<div class="tab-pane fade" id="nav-families" role="tabpanel" aria-labelledby="nav-families-tab">
+
+</div>
+<!-- End browse families -->
+
+
+
+<!-- Recent results -->
+<div class="tab-pane fade" id="nav-recent" role="tabpanel" aria-labelledby="nav-recent-tab">
+
+</div>
+<!-- End recent results -->
+
+
+
+<!-- View profile -->
+<div class="tab-pane fade" id="nav-user" role="tabpanel" aria-labelledby="nav-user-tab">
+
+  <div class="row">
+    <div class="col-md-12">
+      
+<form action="/profile" method="post" enctype="multipart/form-data">
+
+    <fieldset>
+        <legend>User Profile</legend>
+
+        <div id="div_email" class="form-group">
+        <label for="email" class="control-label requiredField">Your email (if not an academic domain, your requests will initially be held until approval):
+            <span class="asteriskField">*</span>
+        </label>
+        <div class="controls ">
+            <input type="email" name="email" maxlength="100" class="emailinput form-control" required="" id="email"
+	    placeholder="Please enter an email address"></div>
+        </div>
+
+        <div id="div_fullname" class="form-group">
+        <label for="fullname" class="control-label requiredField">
+            Full Name
+            <span class="asteriskField">*</span>
+        </label>
+        <div class="controls ">
+            <input type="text" name="fullname" id="job_name" maxlength="100" class="textinput textInput form-control"
+            placeholder="Please enter your name"
+            required=""> </div>
+        </div>
+
+        <div id="div_institution" class="form-group">
+        <label for="institution" class="control-label requiredField">
+            Institution
+            <span class="asteriskField">*</span>
+        </label>
+        <div class="controls ">
+            <input type="text" name="institution" id="institution" maxlength="100" class="textinput textInput form-control"
+            placeholder="Please enter your institution"
+            required=""> </div>
+        </div>
+
+        <div id="div_priority" class="form-group">
+        <label for="priority" class="control-label requiredField">Job priority (contact us to change):
+            <span class="asteriskField">*</span>
+        </label>
+        <div class="controls ">
+            <input type="text" name="priority" maxlength="100" class="textinput textInput form-control" required="" id="priority" placeholder="User priority" disabled></div>
+        </div>
+
+        <div class="form-group">
+        <div id="div_publicjobs" class="checkbox">
+            <label for="publicjobs" class="">
+            <input type="checkbox" name="publicjobs" class="checkboxinput" id="publicjobs" checked>
+            Display publically? (Public jobs complete more quickly!)
+            </label>
+        </div>
+        </div>
+        
+    </fieldset>
+    
+    <div class="form-group">
+        <div class="controls ">
+        <div class="buttonHolder">
+            <input type="submit" name="submit" value="Save changes" class="btn btn-primary button white" id="submit-id-submit">
+    
+        </div>
+        </div>
+    </div>
+</form>
+
+  </div>
+</div>
+
+
+</div>
+<!-- End view profile -->
+
+
+
+</div>
+<!-- End nav tabs -->
+
+
+  </div>
+</div>
+<!-- End submission -->
+
+
+<br>
+
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-md-12">
+
+	    
+	    
+<!-- Business end of things: the form -->
+<form action="/webform/basic" method="post" enctype="multipart/form-data">
+    <fieldset>
+      <legend>Submission Form</legend>
+      <div id="div_email" class="form-group">
+        <label for="email" class="control-label requiredField">Your email (if not an academic domain, your job will be held for approval):
+          <span class="asteriskField">*</span>
+        </label>
+        <div class="controls ">
+          <input type="email" name="email" maxlength="100" class="emailinput form-control" required="" id="email" placeholder="Please enter an email address" value="{{ email }}"></div>
+      </div>
+      <div id="div_job_name" class="form-group">
+        <label for="job_name" class="control-label  requiredField">
+          Job Name
+          <span class="asteriskField">*</span>
+        </label>
+        <div class="controls ">
+          <input type="text" name="job_name" maxlength="50" class="textinput textInput form-control" required="" id="job_name"> </div>
+      </div>
+      <div id="div_sequence" class="form-group">
+        <label for="sequence" class="control-label">
+          Sequence (If protein, we will find naturally-occuring gene sequences) [FASTA-formatted, if multiple]
+        </label>
+        <div class="controls ">
+          <textarea name="sequence" cols="40" rows="10" class="textarea form-control" id="id_sequence"></textarea> </div>
+      </div>
+      <div id="div_id_sequence_file" class="form-group">
+        <label for="id_sequence_file" class="control-label ">
+          FASTA-formatted sequence file
+        </label>
+        <div class="controls ">
+          <input type="file" class="clearablefileinput" id="sequencefile" name="sequencefile"> </div>
+      </div>
+      <div id="div_method" class="form-group">
+        <label for="method" class="control-label  requiredField">
+          Method
+          <span class="asteriskField">*</span>
+        </label>
+        <div class="controls ">
+          <select class="select form-control" id="method" name="method">
+            <option value="improve_2018">IMProve (Saladi et al., JBC, 2018)</option>    
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div id="div_keeppublic" class="checkbox">
+          <label for="keeppublic" class="">
+            <input type="checkbox" name="keeppublic" class="checkboxinput" id="keeppublic" checked> Display publically? (Public jobs complete more quickly!)
+<!-- End form -->
+
+
+
+
+    </div>
+  </div>
+</div>
+<!-- End submission -->
+
+
+
+<h2 id="publications">Publications</h2>
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-md-12">
+
+<div class="row custom-white-panel">
+<div class="col-md-11 col-centered" id="ecoli_ml_paper">
+    <h3>Decoding sequence-level information to predict membrane protein expression</h3>
+    Shyam M Saladi, Nauman Javed, Axel Müller, William M Clemons Jr.<br>
+    <em>Journal of Biological Chemistry.</em> 2018 Jan 29; 293(13):4913-4927<br>
+      <a href="https://doi.org/10.1074/jbc.RA117.001052">doi: 10.1074/jbc.RA117.001052</a><br>
+    <p>
+    <img class="img-responsive pub-img" src="/static/ecoli_ml_figure.png">
+    </p><h4>Abstract</h4>
+    <p align="justify">
+    The heterologous expression of integral membrane proteins (IMPs) remains a major bottleneck in the characterization of this important protein class. IMP expression levels are currently unpredictable, which renders the pursuit of IMPs for structural and biophysical characterization challenging and inefficient. Experimental evidence demonstrates that changes within the nucleotide or amino acid sequence for a given IMP can dramatically affect expression levels, yet these observations have not resulted in generalizable approaches to improve expression levels. Here, we develop a data-driven statistical predictor named IMProve that, using only sequence information, increases the likelihood of selecting an IMP that expresses in Escherichia coli. The IMProve model, trained on experimental data, combines a set of sequence-derived features resulting in an IMProve score, where higher values have a higher probability of success. The model is rigorously validated against a variety of independent data sets that contain a wide range of experimental outcomes from various IMP expression trials. The results demonstrate that use of the model can more than double the number of successfully expressed targets at any experimental scale. IMProve can immediately be used to identify favorable targets for characterization. Most notably, IMProve demonstrates for the first time that IMP expression levels can be predicted directly from sequence.
+    </p>
+    <a href="https://doi.org/10.1074/jbc.RA117.001052" class="btn btn-primary">Visit Article</a>
+    <a href="/#submit" class="btn btn-primary">Try Model</a>
+    <a href="https://www.github.com/clemlab/IMProve" class="btn btn-primary">View Code</a>
+</div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <br>
+    <br>
+  </div>
+</div>
+
+<div class="row custom-white-panel">
+<div class="col-md-11 col-centered" id="cgmd_paper">
+    <h3>A Link between Integral Membrane Protein Expression and Simulated Integration Efficiency</h3>
+    Stephen S. Marshall, Michiel J.M. Niesen, Axel Mueller, Katrin Tiemann, Shyam M. Saladi, Rachel P. Galimidi, Bin Zhang, William M. Clemons, Jr., Thomas F. Miller III<br>
+    <em>Cell Reports.</em> 2016 Aug 23; 16(8):2169-2177 <br>
+    <a href="http://dx.doi.org/10.1016/j.celrep.2016.07.042">doi: 10.1016/j.celrep.2016.07.042</a>
+    <p>
+    <img class="img-responsive pub-img" src="/static/cgmd_figure.jpg">
+    </p><h4>Abstract</h4>
+    <p align="justify">
+    Integral membrane proteins (IMPs) control the flow of information and nutrients across cell membranes, yet IMP mechanistic studies are hindered by difficulties in expression. We investigate this issue by addressing the connection between IMP sequence and observed expression levels. For homologs of the IMP TatC, observed expression levels vary widely and are affected by small changes in protein sequence. The effect of sequence changes on experimentally observed expression levels strongly correlates with the simulated integration efficiency obtained from coarse-grained modeling, which is directly confirmed using an in vivo assay. Furthermore, mutations that improve the simulated integration efficiency likewise increase the experimentally observed expression levels. Demonstration of these trends in both Escherichia coli and Mycobacterium smegmatis suggests that the results are general to other expression systems. This work suggests that IMP integration is a determinant for successful expression, raising the possibility of controlling IMP expression via rational design.
+    </p>
+    <a href="https://linkinghub.elsevier.com/retrieve/pii/S2211-1247(16)30960-3"
+       class="btn btn-primary">Visit Article</a>
+</div>
+</div>
+
+    </div>
+  </div>
+<!-- End Publications -->
+
+
+
+<h2 id="team">Team</h2>
+
+<div class="content">
+  <div class="row">
+
+  <div class="team-col col-md-3" id="bil">
+      <h3><a href="http://clemonslab.caltech.edu">Bil Clemons</a></h3>
+      <img class="img-responsive team-img" src="/static/team_photos/WMC.jpg"/>
+  </div>
+
+  <div class="team-col col-md-3" id="tom">
+      <h3><a href="https://millergroup.caltech.edu">Tom Miller</a></h3>
+      <img class="img-responsive team-img" src="/static/team_photos/TFM.jpg"/>
+  </div>
+
+  <div class="team-col col-md-3" id="charles">
+      <h3>Charles Nelson</h3>
+      <img class="img-responsive team-img" src="/static/team_photos/CN.jpg"/>
+  </div>
+
+  <div class="team-col col-md-3" id="michiel">
+      <h3>Michiel Niesen</h3>
+      <img class="img-responsive team-img" src="/static/team_photos/MN.jpg"/>
+  </div>
+
+  <div class="team-col col-md-3" id="shyam">
+      <h3><a href="https://shyam.saladi.org">Shyam Saladi</a></h3>
+      <img class="img-responsive team-img" src="/static/team_photos/SMS.jpg"/>
+  </div>
+
+  <div class="team-col col-md-3" id="matthew">
+      <h3>Matthew Zimmer</h3>
+      <img class="img-responsive team-img" src="/static/team_photos/MZ.jpg"/>
+  </div>
+
+  </div>
+</div>
+<!-- End Team -->
+
+
+
+<h2 id="contact">Contact us!</h2>
+
+<div class="jumbotron">
+  <div class="row custom-white-panel">
+    <div class="col-centered">
+
+<p align="justify">
+We are actively developing this work and are working to make methods accessible to the broader community to accelerate progress of membrane protein biochemical and biophysical studies. Please contact us to discuss early access to new tools, or <a href="#user">sign up</a> for an account to be kept abreast of improvements and new releases.
+</p>
+
+    </div>
+  </div>
+</div>
+<!-- End contact section -->
+
+
+
+
+</div>
+</div>
+</div>
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='sticky-footer.css') }}">
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+
+<!-- Latest compiled and minified Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+  integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
+
+  <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<!-- client side form validation from ParsleyJS -->
+<script src="http://parsleyjs.org/dist/parsley.min.js" crossorigin="anonymous"></script>
+
+<!-- custom javascript code -->
+<script src="/static/misc_utils.js"></script>
+
+<!-- datatables -->
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css" crossorigin="anonymous">
+
+<!-- buttons --> 
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+      $('#myTable').DataTable( {
+          dom: 'Bfrtip',
+          buttons: [
+              'copy', 'csv', 'excel', 'pdf', 'print'
+          ]
+      } );
+  } );
+  </script>
+
+
+</body>
+</html>
+
